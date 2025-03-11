@@ -12,4 +12,7 @@ import org.springframework.stereotype.Repository;
 public interface StudentRepository extends JpaRepository<Student, Long> {
     @Query("SELECT STRING_AGG(s.name, ', ') FROM Student s")
     String getAllStudentNamesAsString();
+
+    @Query(value = "SELECT * FROM students ORDER BY gpa DESC LIMIT 1", nativeQuery = true)
+    Student getStudentWithHighestGpa();
 }
